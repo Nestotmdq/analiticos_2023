@@ -7,14 +7,17 @@
         var $resultado = $fila.find('.resultado');
         
         
-        var unidades = parseInt(enteredValue);
-       // var parteDecimal = parseFloat(enteredValue).toFixed(2);
-        var parteDecimal = convertirNumeroALetras(unidades);
+        var unidades = parseInt(enteredValue);//PARTE ENTERA
+        
+       var parteDecimal = Math.abs(enteredValue % 1).toFixed(2).replace(/^0+\.?/, '');
+       
+       
+        var parteEntera = convertirNumeroALetras(unidades);//Esto sirve
         
         
         
-        $resultado.text(parteDecimal);
-       // alert("Cambio algo");
+        $resultado.text(parteEntera + " " + parteDecimal+"/100");
+       
       });
     });
     
@@ -40,7 +43,7 @@
     return resultado;
   }
 
-  return 'Número fuera de rango';
+  return ' - ';
 }
 
   
