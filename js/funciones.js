@@ -6,15 +6,9 @@
         var $fila = $(this).closest('tr');
         var $resultado = $fila.find('.resultado');
         
-        
         var unidades = parseInt(enteredValue);//PARTE ENTERA
-        
-       var parteDecimal = Math.abs(enteredValue % 1).toFixed(2).replace(/^0+\.?/, '');
-       
-       
         var parteEntera = convertirNumeroALetras(unidades);//Esto sirve
-        
-        
+        var parteDecimal = Math.abs(enteredValue % 1).toFixed(2).replace(/^0+\.?/, '');
         
         $resultado.text(parteEntera + " " + parteDecimal+"/100");
        
