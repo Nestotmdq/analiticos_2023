@@ -1,19 +1,42 @@
+$(document).ready(function() {
+  $('.notanumero').on('input', function() {
+    var enteredValue = $(this).val();
+    var $fila = $(this).closest('tr');
+    var $resultado = $fila.find('.resultado');
 
+    var unidades = parseInt(enteredValue); // PARTE ENTERA
+    var parteEntera = convertirNumeroALetras(unidades);
+    var parteDecimal = Math.abs(enteredValue % 1).toFixed(2).replace(/^0+\.?/, '');
 
-    $(document).ready(function() {
-      $('.notanumero').on('input', function() {
-        var enteredValue = $(this).val();
-        var $fila = $(this).closest('tr');
-        var $resultado = $fila.find('.resultado');
-        
-        var unidades = parseInt(enteredValue);//PARTE ENTERA
-        var parteEntera = convertirNumeroALetras(unidades);//Esto sirve
-        var parteDecimal = Math.abs(enteredValue % 1).toFixed(2).replace(/^0+\.?/, '');
-        
-        $resultado.text(parteEntera + " " + parteDecimal+"/100");
-       
+    $resultado.text(parteEntera + " " + parteDecimal + "/100");
+
+    // Recalculate and assign the average
+    var tablas = $('.table-bordered');
+    tablas.each(function() {
+      var filas = $(this).find('tr:not(:last-child)');
+      var suma = 0;
+      var contador = 0;
+
+      filas.each(function() {
+        var celdaCalificacion = $(this).find('td:nth-child(5)');
+        var valor = parseFloat(celdaCalificacion.find('input').val());
+
+        if (!isNaN(valor)) {
+          suma += valor;
+          contador++;
+        }
       });
+
+      var promedio = suma / contador;
+      var celdasCalificacion = $(this).find('td:nth-child(5)');
+      var celdaPromedio = celdasCalificacion.last();
+      celdaPromedio.text(promedio.toFixed(2));
+      
+      //console.log('El promedio es:', promedio.toFixed(2));
     });
+  });
+});
+
     
 
     function convertirNumeroALetras(numero) {
@@ -40,4 +63,12 @@
   return ' - ';
 }
 
-  
+
+
+
+
+
+
+
+
+

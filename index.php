@@ -129,9 +129,9 @@ foreach ($electronica as $nivel => $asignaturas) {
                             </td>
                             <td></td>
                             <td></td>
-                            <td><b>CURSO COMPLETO</b></td>
+                            <td><b>CURSO COMPLETO          -          PROMEDIO</b></td>
                             <td></td>
-                            <td><b>PROMEDIO</b></td>
+                            <td><b>  </b></td>
                         </tr>
                 </table>
             </div>
